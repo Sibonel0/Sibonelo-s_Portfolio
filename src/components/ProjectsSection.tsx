@@ -5,33 +5,35 @@ import { Card } from './ui/card'
 import { Button } from './ui/button'
 import { ExternalLink, Github } from 'lucide-react'
 import { ImageWithFallback } from './figma/ImageWithFallback'
+import SDMS from './images/SDMS.jpg'
+import NBS from './images/NBS.jpg'
 
 export function ProjectsSection() {
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution built with Next.js, TypeScript, and Stripe integration. Features include user authentication, product management, and real-time inventory tracking.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
-      technologies: ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL'],
-      github: '#',
+      title: 'Fragrance E-commerce Platform',
+      description: 'Fragrance1 is a Next.js + React fragrance storefront built with TypeScript and Tailwind CSS. It features a polished homepage, category/product browsing, search overlay, authentication pages, and profile management. I built it to showcase a modern, scalable e-commerce UI with reusable components and clean app routing. The project demonstrates my skills in frontend development, UI/UX design, and building responsive web applications.',
+      image: 'https://images.unsplash.com/photo-1719175936556-dbd05e415913?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBwZXJmdW1lJTIwYm90dGxlfGVufDF8fHx8MTc2ODc1MDExMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      technologies: ['Next.js', 'React', 'TypeScript', 'Node.js', 'Firebase'],
+      github: 'https://github.com/Sibonel0/fragrance1',
       live: '#',
       featured: true
     },
     {
-      title: 'Task Management App',
-      description: 'A collaborative project management tool with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop',
-      technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB'],
-      github: '#',
+      title: 'Supplier Database Management System',
+      description: 'Built a modern supplier management portal using Next.js and Express, featuring authenticated access, supplier CRUD workflows, advanced search and filtering, export to Excel, and robust role-aware dashboard analytics. The app demonstrates full-stack integration, secure password handling, and user-friendly UI components such as modals and toast notifications.',
+      image: SDMS,
+      technologies: ['React', 'Node.js', 'Next.js', 'PostgreSQL', 'Tailwind CSS', 'Bootstrap', 'JSON Web Tokens (JWT)', 'Express.js'],
+      github: 'https://github.com/Sibonel0/supplier',
       live: '#',
       featured: true
     },
     {
-      title: 'Weather Dashboard',
-      description: 'A responsive weather application with location-based forecasts, interactive maps, and data visualization using Chart.js.',
-      image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop',
-      technologies: ['Vue.js', 'Chart.js', 'OpenWeather API', 'Tailwind'],
-      github: '#',
+      title: 'Bottle Store',
+      description: 'BottleStore is a full-stack mobile retail app built with React Native and a Node.js/Express backend, designed to manage beverage inventory, track damaged stock, process payments, and summarize daily revenue through a polished mobile UI and secure authentication flow, showcasing practical end-to-end development skills in mobile UX, API design, and business-focused retail operations.',
+      image: NBS,
+      technologies: ['React Native', 'PostgreSQL', 'Node.js, Render', 'Tailwind', 'Express.js'],
+      github: 'https://github.com/Sibonel0/BottleStore',
       live: '#',
       featured: false
     },
@@ -58,7 +60,7 @@ export function ProjectsSection() {
       description: 'A responsive portfolio website with smooth animations, dark theme, and optimized performance built with modern web technologies.',
       image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop',
       technologies: ['Next.js', 'Framer Motion', 'Tailwind', 'TypeScript'],
-      github: '#',
+      github: 'https://github.com/Sibonel0/Sibonelo-s_Portfolio',
       live: '#',
       featured: false
     }

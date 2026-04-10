@@ -1,39 +1,106 @@
 'use client'
 
+import { useState, FormEvent } from 'react'
+import emailjs from '@emailjs/browser'
 import { motion } from 'motion/react'
 import { Card } from './ui/card'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
-import { Github, Linkedin, Mail, Twitter, MapPin, Phone } from 'lucide-react'
+import { Github, Linkedin, Mail, Instagram, MapPin, Phone } from 'lucide-react'
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 export function ContactSection() {
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [subject, setSubject] = useState('')
+  const [message, setMessage] = useState('')
+  const [statusMessage, setStatusMessage] = useState<string | null>(null)
+  const [statusType, setStatusType] = useState<'success' | 'error' | null>(null)
+  const [isSending, setIsSending] = useState(false)
+
+  const recipientEmail = 'sibonelodlamini25@gmail.com'
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    if (!firstName || !email || !subject || !message) {
+      setStatusType('error')
+      setStatusMessage('Please fill in all required fields before sending.')
+      return
+    }
+
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setStatusType('error')
+      setStatusMessage(
+        'Email sending is not configured. Please add VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY to your environment.'
+      )
+      return
+    }
+
+    setIsSending(true)
+    setStatusMessage(null)
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: `${firstName} ${lastName}`.trim(),
+          from_email: email,
+          subject,
+          message,
+          to_email: recipientEmail
+        },
+        EMAILJS_PUBLIC_KEY
+      )
+
+      setStatusType('success')
+      setStatusMessage('Your message was sent successfully. I will reply as soon as possible.')
+      setFirstName('')
+      setLastName('')
+      setEmail('')
+      setSubject('')
+      setMessage('')
+    } catch (error) {
+      console.error('EmailJS error:', error)
+      setStatusType('error')
+      setStatusMessage('Something went wrong while sending your message. Please try again later.')
+    } finally {
+      setIsSending(false)
+    }
+  }
+
   const contactInfo = [
     {
       icon: Mail,
       label: 'Email',
-      value: 'alex.johnson@email.com',
-      href: 'mailto:alex.johnson@email.com'
+      value: 'sibonelodlamini25@gmail.com',
+      href: 'mailto:sibonelodlamini25@gmail.com'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567'
+      value: '+277 117-9216',
+      href: 'tel:+2771179216'
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'San Francisco, CA',
+      value: 'Midrand, Gauteng',
       href: '#'
     }
   ]
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Mail, href: '#', label: 'Email' }
+    { icon: Github, href: 'https://github.com/Sibonel0', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/sibonelo-dlamini-0b5597226', label: 'LinkedIn' },
+    { icon: Instagram, href: 'https://www.instagram.com/sibonelo_kby', label: 'Instagram' },
+    { icon: Mail, href: 'mailto:sibonelodlamini25@gmail.com', label: 'Email' }
   ]
 
   return (
@@ -64,19 +131,36 @@ export function ContactSection() {
           >
             <Card className="p-8 bg-white/5 backdrop-blur-xl border-white/20 shadow-2xl shadow-black/30">
               <h3 className="text-2xl text-white mb-6">Send me a message</h3>
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                {statusMessage ? (
+                  <div
+                    className={`rounded-lg border px-4 py-3 text-sm ${
+                      statusType === 'success'
+                        ? 'border-emerald-400 bg-emerald-500/10 text-emerald-200'
+                        : 'border-red-400 bg-red-500/10 text-red-200'
+                    }`}
+                  >
+                    {statusMessage}
+                  </div>
+                ) : null}
+
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="text-gray-300 text-sm mb-2 block">First Name</label>
                     <Input
                       placeholder="Your first name"
+                      value={firstName}
+                      onChange={(event) => setFirstName(event.target.value)}
                       className="bg-white/5 backdrop-blur-sm border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500 focus:bg-white/10"
+                      required
                     />
                   </div>
                   <div>
                     <label className="text-gray-300 text-sm mb-2 block">Last Name</label>
                     <Input
                       placeholder="Your last name"
+                      value={lastName}
+                      onChange={(event) => setLastName(event.target.value)}
                       className="bg-white/5 backdrop-blur-sm border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500 focus:bg-white/10"
                     />
                   </div>
@@ -87,7 +171,10 @@ export function ContactSection() {
                   <Input
                     type="email"
                     placeholder="your.email@example.com"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
                     className="bg-white/5 backdrop-blur-sm border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500 focus:bg-white/10"
+                    required
                   />
                 </div>
                 
@@ -95,7 +182,10 @@ export function ContactSection() {
                   <label className="text-gray-300 text-sm mb-2 block">Subject</label>
                   <Input
                     placeholder="Project discussion"
+                    value={subject}
+                    onChange={(event) => setSubject(event.target.value)}
                     className="bg-white/5 backdrop-blur-sm border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500 focus:bg-white/10"
+                    required
                   />
                 </div>
                 
@@ -104,12 +194,19 @@ export function ContactSection() {
                   <Textarea
                     placeholder="Tell me about your project..."
                     rows={5}
+                    value={message}
+                    onChange={(event) => setMessage(event.target.value)}
                     className="bg-white/5 backdrop-blur-sm border-white/20 text-white placeholder:text-gray-500 focus:border-emerald-500 focus:bg-white/10 resize-none"
+                    required
                   />
                 </div>
                 
-                <Button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3">
-                  Send Message
+                <Button
+                  type="submit"
+                  disabled={isSending}
+                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3 disabled:cursor-not-allowed disabled:bg-emerald-400/70"
+                >
+                  {isSending ? 'Sending…' : 'Send Message'}
                 </Button>
               </form>
             </Card>
@@ -126,7 +223,7 @@ export function ContactSection() {
             <div>
               <h3 className="text-2xl text-white mb-6">Let's connect</h3>
               <p className="text-gray-400 leading-relaxed mb-8">
-                I'm currently available for freelance work and full-time opportunities. 
+                I'm currently available for opportunities. 
                 Whether you have a project in mind or just want to chat about technology, 
                 I'd love to hear from you.
               </p>
@@ -186,7 +283,7 @@ export function ContactSection() {
           className="border-t border-white/10 mt-16 pt-8 text-center"
         >
           <p className="text-gray-400">
-            © 2025 Alex Johnson. Designed &amp; Built with ❤️ using React and Tailwind CSS.
+            © 2026 Sibonelo Dlamini. Designed &amp; Built with ❤️ using React and Tailwind CSS.
           </p>
         </motion.div>
       </div>
