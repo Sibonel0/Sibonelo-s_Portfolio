@@ -85,8 +85,8 @@ export function ContactSection() {
     {
       icon: Phone,
       label: 'Phone',
-      value: '+277 117-9216',
-      href: 'tel:+2771179216'
+      value: '+27 61-668-7387',
+      href: 'tel:+27616687387'
     },
     {
       icon: MapPin,

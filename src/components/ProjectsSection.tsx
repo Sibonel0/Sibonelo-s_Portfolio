@@ -27,7 +27,7 @@ export function ProjectsSection() {
       technologies: ['React', 'Node.js', 'Next.js', 'PostgreSQL', 'Tailwind CSS', 'Bootstrap', 'JSON Web Tokens (JWT)', 'Express.js'],
       github: 'https://github.com/Sibonel0/supplier',
       live: '#',
-      featured: true
+      featured: false
     },
     {
       title: 'Bottle Store',
@@ -43,9 +43,9 @@ export function ProjectsSection() {
       description: 'The SLAEWS is a full-stack web application designed to help businesses proactively monitor and manage service level agreements (SLAs) for support tickets. The system tracks ticket creation times and SLA durations, then dynamically calculates real-time status indicators such as safe, warning, high risk, and breached based on time progression. It provides an interactive dashboard built with React that visualizes operational health through KPI cards, SLA countdowns, and analytics such as risk distribution, breach rate, and average SLA usage. The backend, built with Node.js and Express, integrates with Firebase Firestore for data storage and includes a custom SLA logic engine that evaluates ticket urgency and predicts potential breaches. By combining real-time tracking, prioritization, and actionable insights, the system enables teams to identify risks early, prioritize critical tasks, and improve overall service performance.',
       image: SLAEWS,
       technologies: ['TypeScript', 'Javascript', 'React', 'Vite', 'Postman', 'REST API', 'Node.js', 'Express', 'Firebase', 'Recharts', 'Tailwind CSS'],
-      github: '#',
+      github: 'https://github.com/Sibonel0/slaews',
       live: '#',
-      featured: false
+      featured: true
     },
     {
       title: 'AI Chat Interface',
