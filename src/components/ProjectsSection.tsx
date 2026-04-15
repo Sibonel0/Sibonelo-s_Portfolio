@@ -7,6 +7,7 @@ import { ExternalLink, Github } from 'lucide-react'
 import { ImageWithFallback } from './figma/ImageWithFallback'
 import SDMS from './images/SDMS.jpg'
 import NBS from './images/NBS.jpg'
+import SLAEWS from './images/SLAEWS.png'
 
 export function ProjectsSection() {
   const projects = [
@@ -38,10 +39,10 @@ export function ProjectsSection() {
       featured: false
     },
     {
-      title: 'Social Media Analytics',
-      description: 'A dashboard for social media analytics with real-time data processing, custom visualizations, and automated reporting.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
-      technologies: ['Python', 'Django', 'React', 'D3.js'],
+      title: 'Service Level Agreement Early Warning System',
+      description: 'The SLAEWS is a full-stack web application designed to help businesses proactively monitor and manage service level agreements (SLAs) for support tickets. The system tracks ticket creation times and SLA durations, then dynamically calculates real-time status indicators such as safe, warning, high risk, and breached based on time progression. It provides an interactive dashboard built with React that visualizes operational health through KPI cards, SLA countdowns, and analytics such as risk distribution, breach rate, and average SLA usage. The backend, built with Node.js and Express, integrates with Firebase Firestore for data storage and includes a custom SLA logic engine that evaluates ticket urgency and predicts potential breaches. By combining real-time tracking, prioritization, and actionable insights, the system enables teams to identify risks early, prioritize critical tasks, and improve overall service performance.',
+      image: SLAEWS,
+      technologies: ['TypeScript', 'Javascript', 'React', 'Vite', 'Postman', 'REST API', 'Node.js', 'Express', 'Firebase', 'Recharts', 'Tailwind CSS'],
       github: '#',
       live: '#',
       featured: false

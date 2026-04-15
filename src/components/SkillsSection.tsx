@@ -11,7 +11,8 @@ export function SkillsSection() {
         { name: 'React/Next.js', level: 95, color: 'from-blue-400 to-blue-600' },
         { name: 'TypeScript', level: 90, color: 'from-blue-500 to-blue-700' },
         { name: 'Tailwind CSS', level: 88, color: 'from-cyan-400 to-cyan-600' },
-        { name: 'Vue.js', level: 75, color: 'from-green-400 to-green-600' }
+        { name: 'Vite', level: 75, color: 'from-green-400 to-green-600' },
+        { name: 'Bootstrap', level: 80, color: 'from-purple-400 to-purple-600' }
       ]
     },
     {
@@ -20,16 +21,18 @@ export function SkillsSection() {
         { name: 'Node.js', level: 90, color: 'from-green-500 to-green-700' },
         { name: 'Firebase', level: 77, color: 'from-yellow-400 to-yellow-600' },
         { name: 'PostgreSQL', level: 90, color: 'from-indigo-400 to-indigo-600' },
-        { name: 'MongoDB', level: 78, color: 'from-green-600 to-green-800' }
+        { name: 'MongoDB', level: 78, color: 'from-green-600 to-green-800' },
+        { name: 'SQL Server', level: 70, color: 'from-red-400 to-red-600' },
       ]
     },
     {
       title: 'Tools & Others',
       skills: [
         { name: 'Git/GitHub', level: 92, color: 'from-gray-400 to-gray-600' },
-        { name: 'Docker', level: 5, color: 'from-blue-600 to-blue-800' },
-        { name: 'AWS', level: 5, color: 'from-orange-400 to-orange-600' },
-        { name: 'GraphQL', level: 5, color: 'from-pink-400 to-pink-600' }
+        { name: 'Postman', level: 80, color: 'from-pink-400 to-pink-600' },
+        { name: 'REST API', level: 97, color: 'from-orange-400 to-orange-600' },
+        { name: 'Figma', level: 80, color: 'from-pink-400 to-pink-600' },
+        { name: 'AI', level: 90, color: 'from-gray-500 to-gray-700' },
       ]
     }
   ]
@@ -114,7 +117,7 @@ export function SkillsSection() {
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
             {[
               'React', 'TypeScript', 'Node.js', 'Next.js', 'Firebase', 'PostgreSQL', 
-              'MongoDB', 'Docker', 'Bootstrap', 'Git', 'Tailwind', 'SQLSMS', 'Vite'
+              'MongoDB', 'Postman', 'Bootstrap', 'GitHub', 'Tailwind', 'SQLSMS', 'Vite'
             ].map((tech, index) => (
               <motion.span
                 key={tech}
